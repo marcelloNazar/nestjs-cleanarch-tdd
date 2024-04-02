@@ -4,10 +4,10 @@ import { UserEntity } from '@/users/entities/user.entity'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { UserOutput, UserOutputMapper } from '../dtos/user-output'
 import { UseCase as DefaultUseCase } from '@/shared/application/usecases/use-case'
+import { InvalidCredentialsError } from '@/shared/application/errors/invalid-credentials-error'
 
-export namespace SignupUseCase {
+export namespace SigninUseCase {
   export type Input = {
-    name: string
     email: string
     password: string
   }
@@ -21,21 +21,23 @@ export namespace SignupUseCase {
     ) {}
 
     async execute(input: Input): Promise<Output> {
-      const { email, name, password } = input
+      const { email, password } = input
 
-      if (!email || !name || !password) {
+      if (!email || !password) {
         throw new BadRequestError('Input data not provided')
       }
 
-      await this.userRepository.emailExists(email)
+      const entity = await this.userRepository.findByEmail(email)
 
-      const hashPassword = await this.hashProvider.generateHash(password)
-
-      const entity = new UserEntity(
-        Object.assign(input, { password: hashPassword }),
+      const hashPasswordMatches = await this.hashProvider.compareHash(
+        password,
+        entity.password,
       )
 
-      await this.userRepository.insert(entity)
+      if (!hashPasswordMatches) {
+        throw new InvalidCredentialsError('Invalid credentials')
+      }
+
       return UserOutputMapper.toOutput(entity)
     }
   }
