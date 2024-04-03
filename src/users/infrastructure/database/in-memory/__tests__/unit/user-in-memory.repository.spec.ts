@@ -1,6 +1,6 @@
-import { UserEntity } from '@/users/entities/user.entity'
+import { UserEntity } from '@/users/domain/entities/user.entity'
 import { UserInMemoryRepository } from '../../user-in-memnory.repository'
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
 import { ConflictError } from '@/shared/domain/errors/conflict-error'
 

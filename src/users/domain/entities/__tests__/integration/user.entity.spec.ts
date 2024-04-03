@@ -1,4 +1,4 @@
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { UserEntity, UserProps } from '../../user.entity'
 import { EntityValidationError } from '@/shared/domain/errors/validation-error'
 

@@ -1,4 +1,4 @@
-import { UserRepository } from '@/users/repositories/user.repository'
+import { UserRepository } from '@/users/domain/repositories/user.repository'
 import { UseCase as DefaultUseCase } from '@/shared/application/usecases/use-case'
 
 export namespace DeleteUserUseCase {

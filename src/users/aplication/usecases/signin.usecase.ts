@@ -1,6 +1,6 @@
-import { UserRepository } from '@/users/repositories/user.repository'
+import { UserRepository } from '@/users/domain/repositories/user.repository'
 import { BadRequestError } from '../../../shared/application/errors/bad-request-error'
-import { UserEntity } from '@/users/entities/user.entity'
+import { UserEntity } from '@/users/domain/entities/user.entity'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { UserOutput, UserOutputMapper } from '../dtos/user-output'
 import { UseCase as DefaultUseCase } from '@/shared/application/usecases/use-case'
