@@ -1,8 +1,8 @@
-import { UserInMemoryRepository } from '@/users/database/in-memory/user-in-memnory.repository'
+import { UserInMemoryRepository } from '@/users/infrastructure/database/in-memory/user-in-memnory.repository'
 import { ListUsersUseCase } from '@/users/aplication/usecases/listusers.usecase'
-import { UserRepository } from '@/users/repositories/user.repository'
-import { UserEntity } from '@/users/entities/user.entity'
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserRepository } from '@/users/domain/repositories/user.repository'
+import { UserEntity } from '@/users/domain/entities/user.entity'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 
 describe('ListUsersUseCase unit tests', () => {
   let sut: ListUsersUseCase.UseCase

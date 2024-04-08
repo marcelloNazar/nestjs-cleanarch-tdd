@@ -1,10 +1,10 @@
-import { UserInMemoryRepository } from '@/users/database/in-memory/user-in-memnory.repository'
+import { UserInMemoryRepository } from '@/users/infrastructure/database/in-memory/user-in-memnory.repository'
 import { SigninUseCase } from '../../signin.usecase'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { BadRequestError } from '@/shared/application/errors/bad-request-error'
-import { UserEntity } from '@/users/entities/user.entity'
+import { UserEntity } from '@/users/domain/entities/user.entity'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
 import { InvalidCredentialsError } from '@/shared/application/errors/invalid-credentials-error'
 

@@ -1,8 +1,8 @@
-import { UserInMemoryRepository } from '@/users/database/in-memory/user-in-memnory.repository'
+import { UserInMemoryRepository } from '@/users/infrastructure/database/in-memory/user-in-memnory.repository'
 import { SignupUseCase } from '../../signup.usecase'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { ConflictError } from '@/shared/domain/errors/conflict-error'
 import { BadRequestError } from '@/shared/application/errors/bad-request-error'
 

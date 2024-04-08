@@ -1,8 +1,8 @@
-import { UserInMemoryRepository } from '@/users/database/in-memory/user-in-memnory.repository'
+import { UserInMemoryRepository } from '@/users/infrastructure/database/in-memory/user-in-memnory.repository'
 import { GetUserUseCase } from '../../getuser.usecase'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
-import { UserEntity } from '@/users/entities/user.entity'
-import { UserDataBuilder } from '@/users/helpers/user-data-builder'
+import { UserEntity } from '@/users/domain/entities/user.entity'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 
 describe('GetUserUseCase unit tests', () => {
   let sut: GetUserUseCase.UseCase
