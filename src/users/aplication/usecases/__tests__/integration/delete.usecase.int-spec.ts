@@ -3,14 +3,14 @@ import { setupPrismaTests } from '@/shared/infrastructure/database/prisma/testin
 import { UserPrismaRepository } from '@/users/infrastructure/database/prisma/repositories/user-prisma.repository'
 import { Test, TestingModule } from '@nestjs/testing'
 import { PrismaClient } from '@prisma/client'
+import { DeleteUserUseCase } from '../../delete-user.usecase'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
-import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { UserEntity } from '@/users/domain/entities/user.entity'
-import { GetUserUseCase } from '../../../getuser.usecase'
+import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 
-describe('GetUserUseCase integration tests', () => {
+describe('DeleteUseCase integration tests', () => {
   const prismaService = new PrismaClient()
-  let sut: GetUserUseCase.UseCase
+  let sut: DeleteUserUseCase.UseCase
   let repository: UserPrismaRepository
   let module: TestingModule
 
@@ -23,7 +23,7 @@ describe('GetUserUseCase integration tests', () => {
   })
 
   beforeEach(async () => {
-    sut = new GetUserUseCase.UseCase(repository)
+    sut = new DeleteUserUseCase.UseCase(repository)
     await prismaService.user.deleteMany()
   })
 
@@ -37,14 +37,20 @@ describe('GetUserUseCase integration tests', () => {
     )
   })
 
-  it('should returns a user', async () => {
+  it('should delete a user', async () => {
     const entity = new UserEntity(UserDataBuilder({}))
-    const model = await prismaService.user.create({
+    const newUser = await prismaService.user.create({
       data: entity.toJSON(),
     })
+    await sut.execute({ id: entity._id })
 
-    const output = await sut.execute({ id: entity._id })
-
-    expect(output).toMatchObject(model)
+    const output = await prismaService.user.findUnique({
+      where: {
+        id: entity._id,
+      },
+    })
+    expect(output).toBeNull()
+    const models = await prismaService.user.findMany()
+    expect(models).toHaveLength(0)
   })
 })

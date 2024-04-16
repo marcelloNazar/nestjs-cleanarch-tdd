@@ -3,7 +3,7 @@ import { setupPrismaTests } from '@/shared/infrastructure/database/prisma/testin
 import { UserPrismaRepository } from '@/users/infrastructure/database/prisma/repositories/user-prisma.repository'
 import { Test, TestingModule } from '@nestjs/testing'
 import { PrismaClient } from '@prisma/client'
-import { SignupUseCase } from '../../../signup.usecase'
+import { SignupUseCase } from '../../signup.usecase'
 import { HashProvider } from '@/shared/application/providers/hash-provider'
 import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
 

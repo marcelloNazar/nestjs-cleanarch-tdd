@@ -5,7 +5,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { PrismaClient } from '@prisma/client'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
 import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
-import { ListUsersUseCase } from '../../../listusers.usecase'
+import { ListUsersUseCase } from '../../listusers.usecase'
 import { UserEntity } from '@/users/domain/entities/user.entity'
 
 describe('ListUsersUseCase integration tests', () => {

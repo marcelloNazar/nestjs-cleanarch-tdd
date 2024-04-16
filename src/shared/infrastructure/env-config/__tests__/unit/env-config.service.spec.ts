@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { EnvConfigService } from './env-config.service'
-import { EnvConfigModule } from './env-config.module'
+import { EnvConfigService } from '../../env-config.service'
+import { EnvConfigModule } from '../../env-config.module'
 
 describe('EnvConfigService unit tests', () => {
   let sut: EnvConfigService
@@ -24,5 +24,13 @@ describe('EnvConfigService unit tests', () => {
 
   it('should return the variable NODE_ENV', () => {
     expect(sut.getNodeEnv()).toBe('test')
+  })
+
+  it('should return the variable JWT_SECRET', () => {
+    expect(sut.getJwtSecret()).toBe('my_secret')
+  })
+
+  it('should return the variable JWT_EXPIRES_IN', () => {
+    expect(sut.getJwtExpiresInSeconds()).toBe(86400)
   })
 })

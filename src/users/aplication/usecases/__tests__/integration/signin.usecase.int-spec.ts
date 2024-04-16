@@ -8,7 +8,7 @@ import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-prov
 import { UserEntity } from '@/users/domain/entities/user.entity'
 import { UserDataBuilder } from '@/users/domain/helpers/user-data-builder'
 import { NotFoundError } from '@/shared/domain/errors/not-found-error'
-import { SigninUseCase } from '../../../signin.usecase'
+import { SigninUseCase } from '../../signin.usecase'
 import { InvalidCredentialsError } from '@/shared/application/errors/invalid-credentials-error'
 import { BadRequestError } from '@/shared/application/errors/bad-request-error'
 
