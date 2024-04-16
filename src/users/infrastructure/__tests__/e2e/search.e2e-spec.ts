@@ -82,7 +82,7 @@ describe('UsersController e2e tests', () => {
 
       const res = await request(app.getHttpServer())
         .get(`/users/?${queryParams}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(200)
       expect(Object.keys(res.body)).toStrictEqual(['data', 'meta'])
       expect(res.body).toStrictEqual({
@@ -125,7 +125,7 @@ describe('UsersController e2e tests', () => {
 
       const res = await request(app.getHttpServer())
         .get(`/users/?${queryParams}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(200)
       expect(Object.keys(res.body)).toStrictEqual(['data', 'meta'])
       expect(res.body).toStrictEqual({
@@ -144,7 +144,7 @@ describe('UsersController e2e tests', () => {
     it('should return a error with 422 code when the query params is invalid', async () => {
       const res = await request(app.getHttpServer())
         .get('/users/?fakeId=10')
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(422)
       expect(res.body.error).toBe('Unprocessable Entity')
       expect(res.body.message).toEqual(['property fakeId should not exist'])

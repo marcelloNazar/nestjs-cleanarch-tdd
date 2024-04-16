@@ -69,7 +69,7 @@ describe('UsersController e2e tests', () => {
       updateUserDto.name = 'test name'
       const res = await request(app.getHttpServer())
         .put(`/users/${entity._id}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .send(updateUserDto)
         .expect(200)
       const user = await repository.findById(entity._id)
@@ -81,7 +81,7 @@ describe('UsersController e2e tests', () => {
     it('should return a error with 422 code when the request body is invalid', async () => {
       const res = await request(app.getHttpServer())
         .put(`/users/${entity._id}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .send({})
         .expect(422)
       expect(res.body.error).toBe('Unprocessable Entity')
@@ -94,7 +94,7 @@ describe('UsersController e2e tests', () => {
     it('should return a error with 404 code when throw NotFoundError with invalid id', async () => {
       const res = await request(app.getHttpServer())
         .put('/users/fakeId')
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .send(updateUserDto)
         .expect(404)
         .expect({

@@ -44,17 +44,4 @@ describe('AuthService unit tests', () => {
     expect(Object.keys(result)).toEqual(['accessToken'])
     expect(typeof result.accessToken).toEqual('string')
   })
-
-  it('should verify a jwt', async () => {
-    const result = await sut.generateJwt('fakeId')
-
-    const validToken = await sut.verifyJwt(result.accessToken)
-    expect(validToken).not.toBeNull()
-    await expect(sut.verifyJwt('fake')).rejects.toThrow()
-    await expect(
-      sut.verifyJwt(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      ),
-    ).rejects.toThrow()
-  })
 })

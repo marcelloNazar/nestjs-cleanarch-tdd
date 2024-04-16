@@ -63,7 +63,7 @@ describe('UsersController e2e tests', () => {
     it('should get a user', async () => {
       const res = await request(app.getHttpServer())
         .get(`/users/${entity._id}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(200)
       const presenter = UsersController.userToResponse(entity.toJSON())
       const serialized = instanceToPlain(presenter)
@@ -73,7 +73,7 @@ describe('UsersController e2e tests', () => {
     it('should return a error with 404 code when throw NotFoundError with invalid id', async () => {
       const res = await request(app.getHttpServer())
         .get('/users/fakeId')
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(404)
         .expect({
           statusCode: 404,

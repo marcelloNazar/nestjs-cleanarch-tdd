@@ -61,7 +61,7 @@ describe('UsersController e2e tests', () => {
     it('should remove a user', async () => {
       const res = await request(app.getHttpServer())
         .delete(`/users/${entity._id}`)
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(204)
         .expect({})
     })
@@ -69,7 +69,7 @@ describe('UsersController e2e tests', () => {
     it('should return a error with 404 code when throw NotFoundError with invalid id', async () => {
       const res = await request(app.getHttpServer())
         .delete('/users/fakeId')
-        .set('Authorization', accessToken)
+        .set('Authorization', `Bearer ${accessToken}`)
         .expect(404)
         .expect({
           statusCode: 404,
