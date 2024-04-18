@@ -36,7 +36,7 @@ jobs:
         env:
           PORT: 3000
           NODE_ENV: test
-          JWT_SECRET: fake_secret
+          JWT_SECRET: my_secret
           JWT_EXPIRES_IN: 86400
           DATABASE_URL: 'postgresql://postgres:docker@localhost:5432/projectdb?schema=public'
 
@@ -44,6 +44,6 @@ jobs:
         env:
           PORT: 3000
           NODE_ENV: test
-          JWT_SECRET: fake_secret
+          JWT_SECRET: my_secret
           JWT_EXPIRES_IN: 86400
           DATABASE_URL: 'postgresql://postgres:docker@localhost:5432/projectdb?schema=public'
