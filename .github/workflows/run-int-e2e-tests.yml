@@ -1,6 +1,6 @@
 name: CI - Integration and E2E Tests
 
-on: [pull_request]
+on: [push]
 
 jobs:
   run-int-e2e-tests:
